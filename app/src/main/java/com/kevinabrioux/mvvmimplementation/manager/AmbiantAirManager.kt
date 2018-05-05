@@ -28,7 +28,7 @@ class LightManager(context: Context, lightListener: LightListener) : SensorEvent
     }
 
     override fun onSensorChanged(p0: SensorEvent?) {
-        this.listener?.onLightChange(p0?.accuracy)
+        this.listener?.onLightChange(p0?.values?.get(0)?.toInt())
     }
 
 }

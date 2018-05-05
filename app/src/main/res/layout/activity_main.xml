@@ -2,11 +2,14 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.kevinabrioux.mvvmimplementation.activity.MainActivity">
+
     <data>
+
         <variable
             name="viewModel"
             type="com.kevinabrioux.mvvmimplementation.viewmodel.MainViewModel" />
     </data>
+
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -20,8 +23,8 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:gravity="center_vertical"
-                android:text="Ambient air temperature" />
+                android:gravity="center"
+                android:text="Light level" />
 
             <TextView
                 android:id="@+id/textView_light"

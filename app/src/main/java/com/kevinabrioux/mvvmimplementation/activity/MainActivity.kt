@@ -2,6 +2,7 @@ package com.kevinabrioux.mvvmimplementation.activity
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.util.Log
 import android.widget.TextView
 import com.kevinabrioux.mvvmimplementation.R
 import com.kevinabrioux.mvvmimplementation.listener.LightListener
@@ -19,6 +20,7 @@ class MainActivity : AppCompatActivity() {
         this.lightTextView = this.findViewById(R.id.textView_light)
         this.lightManager = LightManager(this, object : LightListener() {
             override fun onLightChange(light: Int?) {
+                Log.d("lol", light.toString())
                 this@MainActivity.lightTextView?.text = light.toString()
             }
         })
