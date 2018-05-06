@@ -11,7 +11,7 @@ import com.kevinabrioux.mvvmimplementation.manager.LightManager
 
 class MainActivity : AppCompatActivity() {
 
-    var lightManager: LightManager? = null
+    private var lightManager: LightManager? = null
     private var lightTextView: TextView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
