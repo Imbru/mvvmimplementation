@@ -1,28 +1,27 @@
 package com.kevinabrioux.mvvmimplementation.activity
 
+import android.arch.lifecycle.ViewModelProviders
+import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import android.util.Log
-import android.widget.TextView
+import com.kevinabrioux.mvvmimplementation.BR
 import com.kevinabrioux.mvvmimplementation.R
-import com.kevinabrioux.mvvmimplementation.listener.LightListener
-import com.kevinabrioux.mvvmimplementation.manager.LightManager
+import com.kevinabrioux.mvvmimplementation.databinding.ActivityMainBinding
+import com.kevinabrioux.mvvmimplementation.viewmodel.MainViewModel
 
 
 class MainActivity : AppCompatActivity() {
 
-    private var lightManager: LightManager? = null
-    private var lightTextView: TextView? = null
+    private var viewModel: MainViewModel? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        this.lightTextView = this.findViewById(R.id.textView_light)
-        this.lightManager = LightManager(this, object : LightListener() {
-            override fun onLightChange(light: Int?) {
-                Log.d("lol", light.toString())
-                this@MainActivity.lightTextView?.text = light.toString()
-            }
-        })
+        val binding: ActivityMainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+        this.viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
+        binding.viewModel = this.viewModel
+        binding.setVariable(BR.viewModel, this.viewModel)
+        this.viewModel.bind(binding)
+        binding.executePendingBindings()
     }
 }
