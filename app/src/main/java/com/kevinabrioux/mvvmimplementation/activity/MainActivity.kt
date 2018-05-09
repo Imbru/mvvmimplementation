@@ -17,11 +17,11 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        val binding: ActivityMainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+
+        val binding = DataBindingUtil.setContentView(this, R.layout.activity_main) as ActivityMainBinding
         this.viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
         binding.viewModel = this.viewModel
         binding.setVariable(BR.viewModel, this.viewModel)
-        this.viewModel.bind(binding)
         binding.executePendingBindings()
     }
 }
