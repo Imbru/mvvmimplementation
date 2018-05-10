@@ -9,4 +9,7 @@ import android.databinding.ObservableField
  */
 class MainViewModel : ViewModel() {
 
+    fun bind(){
+
+    }
 }
