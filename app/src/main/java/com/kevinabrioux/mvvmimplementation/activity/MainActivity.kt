@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity
 import com.kevinabrioux.mvvmimplementation.BR
 import com.kevinabrioux.mvvmimplementation.R
 import com.kevinabrioux.mvvmimplementation.databinding.ActivityMainBinding
+import com.kevinabrioux.mvvmimplementation.manager.LightManager
 import com.kevinabrioux.mvvmimplementation.viewmodel.MainViewModel
 
 
@@ -23,5 +24,6 @@ class MainActivity : AppCompatActivity() {
         binding.viewModel = this.viewModel
         binding.setVariable(BR.viewModel, this.viewModel)
         binding.executePendingBindings()
+        this.viewModel?.bind(LightManager(this))
     }
 }

@@ -2,6 +2,7 @@ package com.kevinabrioux.mvvmimplementation.viewmodel
 
 import android.arch.lifecycle.ViewModel
 import android.databinding.ObservableField
+import com.kevinabrioux.mvvmimplementation.manager.LightManager
 
 /**
  *
@@ -9,7 +10,7 @@ import android.databinding.ObservableField
  */
 class MainViewModel : ViewModel() {
 
-    fun bind(){
+    fun bind(lightManager: LightManager?){
 
     }
 }

@@ -11,14 +11,13 @@ import com.kevinabrioux.mvvmimplementation.listener.LightListener
  *
  * Created by kevinabrioux on 26/01/2018.
  */
-class LightManager(context: Context, lightListener: LightListener) : SensorEventListener {
+class LightManager(context: Context) : SensorEventListener {
 
     private val sensorManager: SensorManager?
     private val lightSensor: Sensor?
-    private val listener: LightListener?
+    private var listener: LightListener? = null
 
     init {
-        this.listener = lightListener
         this.sensorManager = context.getSystemService(Context.SENSOR_SERVICE) as SensorManager?
         this.lightSensor = sensorManager?.getDefaultSensor(Sensor.TYPE_LIGHT)
         this.sensorManager?.registerListener(this, this.lightSensor, SensorManager.SENSOR_DELAY_NORMAL)
