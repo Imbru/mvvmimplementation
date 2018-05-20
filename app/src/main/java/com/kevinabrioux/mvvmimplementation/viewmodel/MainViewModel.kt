@@ -3,6 +3,9 @@ package com.kevinabrioux.mvvmimplementation.viewmodel
 import android.arch.lifecycle.ViewModel
 import android.databinding.ObservableField
 import com.kevinabrioux.mvvmimplementation.manager.LightManager
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.schedulers.Schedulers
 
 /**
  *
@@ -10,7 +13,14 @@ import com.kevinabrioux.mvvmimplementation.manager.LightManager
  */
 class MainViewModel : ViewModel() {
 
-    fun bind(lightManager: LightManager?){
+    val lightValue = ObservableField<String>()
+    private val disposables = CompositeDisposable()
 
+    fun bind(lightManager: LightManager?) {
+        lightManager?.lightValue
+                ?.observeOn(AndroidSchedulers.mainThread())
+                ?.subscribeOn(Schedulers.newThread())
+                ?.subscribe { lightValue.set(it.toString()) }
+                ?.let { disposables.add(it) }
     }
 }

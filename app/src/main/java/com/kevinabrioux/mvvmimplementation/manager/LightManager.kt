@@ -7,6 +7,7 @@ import android.hardware.SensorEventListener
 import android.hardware.SensorManager
 import android.os.Handler
 import android.os.HandlerThread
+import io.reactivex.subjects.BehaviorSubject
 
 /**
  *
@@ -17,6 +18,7 @@ class LightManager(context: Context) : SensorEventListener {
     private val sensorManager: SensorManager? = context.getSystemService(Context.SENSOR_SERVICE) as SensorManager?
     private val lightSensor: Sensor?
     private var handlerThread: HandlerThread? = null
+    val lightValue: BehaviorSubject<Int> = BehaviorSubject.create<Int>()
 
     init {
         this.lightSensor = sensorManager?.getDefaultSensor(Sensor.TYPE_LIGHT)
@@ -35,8 +37,8 @@ class LightManager(context: Context) : SensorEventListener {
     override fun onAccuracyChanged(p0: Sensor?, p1: Int) {
     }
 
-    override fun onSensorChanged(p0: SensorEvent?) {
-        //this.listener?.onLightChange(p0?.values?.get(0)?.toInt())
+    override fun onSensorChanged(event: SensorEvent?) {
+        event?.values?.get(0)?.toInt()?.let { this.lightValue.onNext(it) }
     }
 
 }
